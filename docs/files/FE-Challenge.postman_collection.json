@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "bbc5948a-f566-4fb4-8ed5-1f25b516b895",
+		"name": "MagiClick - FE Challenge 01",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Account List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/account",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"my account\",\n    \"currency\": \"GBP\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/account",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account Activity",
+			"item": [
+				{
+					"name": "Activity List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/activity",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"activity"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "8",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activity Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\": 7,\n    \"description\": \"Aciklama\",\n    \"amount\": 500,\n    \"type\": 1,\n    \"createdAt\": \"{{current_timestamp}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/activity",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"activity"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var current_timestamp = new Date();",
+					"postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "http://localhost:3333/api"
+		}
+	]
+}
