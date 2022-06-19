@@ -21,6 +21,9 @@ export class AccountService {
   }
 
   async list(where: Prisma.AccountWhereInput): Promise<AccountEntity[]> {
+    //string olarak geliyordu ama tipi number olduğu için 500 hatası veriyordu düzelttim.
+    if(where?.accountNumber) where.accountNumber = Number(where.accountNumber);
+
     return this.prisma.account.findMany({
       where: where,
       orderBy: { createdAt: 'desc' },
