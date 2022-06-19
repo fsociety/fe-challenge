@@ -10,6 +10,7 @@ type Activity = {
   amount: number;
   type: number; // 0: Gider, 1: Gelir
   createdAt: Date;
+  category: string | null;
 };
 
 type ActivityCreateInput = {
@@ -18,6 +19,7 @@ type ActivityCreateInput = {
   type: number;
   createdAt: string | Date;
   accountId: number;
+  category: string | null
 };
 
 type Account = {
@@ -71,7 +73,8 @@ export function Detail() {
       description: String(formdata.get('description')),
       amount: Number(formdata.get('amount')),
       createdAt: new Date(String(formdata.get('createdAt'))),
-      type: Number(formdata.get('type'))
+      type: Number(formdata.get('type')),
+      category: String(formdata.get('category'))
     }
     axios
     .post('http://127.0.0.1:3333/api/activity',data,{
@@ -135,7 +138,7 @@ export function Detail() {
               <div className="info">
                 <div className='col-1'>
                   <h1>{item?.description}</h1>
-                  <small>Market</small>
+                  <small>{item?.category}</small>
                 </div>
                 <div className={`col-2 ${item?.type ? 'green' : ''}`}>
                   <strong>{item?.type ? '+' : '-'}{item?.amount}</strong> ₺
@@ -177,9 +180,11 @@ export function Detail() {
           </div>
           <div className="input-group">
             <label htmlFor="">Kategori</label>
-            <select name="" className='form-select'>
+            <select name="category" required className='form-select'>
               <option value="">Seçiniz</option>
-              <option value="1">OPT2</option>
+              <option value="Market">Market</option>
+              <option value="Market">Yeme - İçme</option>
+              <option value="Market">Gelen Transfer</option>
             </select>
           </div>
           <div className="input-group">

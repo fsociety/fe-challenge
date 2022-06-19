@@ -24,4 +24,12 @@ model Activity {
   amount      Float
   type        Int
   createdAt   DateTime
+  category    String?
+}
+
+//relation kuramadım o yüzden düz yazı şeklinde eklettiriyorum
+
+model ActivityCategory {
+  id    Int @id @default(autoincrement())
+  name  String
 }

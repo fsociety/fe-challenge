@@ -19,4 +19,7 @@ export class ActivityEntity implements Activity {
 
   @ApiProperty()
   createdAt: Date;
+
+  @ApiProperty()
+  category: String;
 }
